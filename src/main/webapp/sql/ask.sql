@@ -304,6 +304,8 @@ ALTER TABLE ask
 		CASCADE;
 
 ALTER TABLE ask ADD a_cnt NUMBER(3) DEFAULT 0;
+
+UPDATE ask SET a_cnt = '0';
 		
 /*
 UPDATE ask SET a_status = '1' where a_status is null;

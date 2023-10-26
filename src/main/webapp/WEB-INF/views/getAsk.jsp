@@ -180,8 +180,14 @@ textarea{
 	</form>
 	<!-- 수정버튼 넣고 페이지 이동 -->
 	<div id="btnsDiv">
-		<c:if test="${role ne '관리자'}">
-			<button class="updatebu" onclick="checkAskValue()">글 수정</button>
+		<c:if test="${role eq '브랜드'}">
+			<c:if test="${ask.a_pmm ne null}">
+				<button class="updatebu" onclick="checkAskValue()" style="cursor : pointer;">글 수정</button>
+				<a  class="deletebu" href="deleteAsk.zo?a_no=${ask.a_no}">글 삭제</a>
+			</c:if>
+		</c:if>
+		<c:if test="${role eq '회원'}">
+			<button class="updatebu" onclick="checkAskValue()" style="cursor : pointer;">글 수정</button>
 			<a  class="deletebu" href="deleteAsk.zo?a_no=${ask.a_no}">글 삭제</a>
 		</c:if>
 	</div>
