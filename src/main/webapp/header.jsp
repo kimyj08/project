@@ -158,11 +158,11 @@
 </nav>
 <div class="subnav">
     <ul class="navi">
-      <li><a href="brandList.jsp" data-link-alt="브랜드"><span>브랜드</span></a></li>
+      <li><a href="" data-link-alt="브랜드"><span>브랜드</span></a></li>
       <li><a href="" data-link-alt="상품"><span>상품</span></a></li>
       <li><a href="" data-link-alt="Us"><span>Us</span></a></li>
       <li><a href="" data-link-alt="이벤트"><span>이벤트</span></a></li>
-      <li><a href="" data-link-alt="놀이터"><span>놀이터</span></a></li>
+      <li><a href="getCommuList.zo" data-link-alt="놀이터"><span>놀이터</span></a></li>
     </ul>
   </div>	
 </header>
