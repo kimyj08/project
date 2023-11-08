@@ -7,7 +7,7 @@
 
 	<insert id="insertCommu" parameterType="commu">
 	<![CDATA[
-		insert into community(cm_bdno,um_no,cm_title,cm_desc) values((select nvl(max(cm_bdno),0)+1 from community), #{um_no}, #{cm_title}, #{cm_desc})
+		insert into community(cm_bdno,cm_title,cm_writer,cm_desc) values((select nvl(max(cm_bdno),0)+1 from community), #{cm_title}, #{cm_writer}, #{cm_desc})
 	]]>
 	</insert>
 	
@@ -44,10 +44,16 @@
 	]]>
 	</update>
 	
-	<delete id="deleteCommu">
+	<update id="deleteCommu">
+	<![CDATA[
+		update community set cm_del = '1' where cm_bdno = #{cm_bdno}
+	]]>
+	</update>
+	
+	<!-- <delete id="deleteCommu">
 	<![CDATA[
 		delete from community where cm_bdno = #{cm_bdno}
 	]]>
-	</delete>
+	</delete> -->
 	
 </mapper>

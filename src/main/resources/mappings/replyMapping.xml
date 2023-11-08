@@ -3,33 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="Coms">
+<mapper namespace="Reply">
 	
-	<insert id="insertComs" parameterType="coms">
+	<insert id="insertReply" parameterType="reply">
 	<![CDATA[
 		insert into comments(cm_no,rv_no,bm_no,cm_content) values((select nvl(max(cm_no),0)+1 from comments), #{rv_no}, #{bm_no}, #{cm_content})
 	]]>
 	</insert>
 	
-	<select id="getComsList" resultType="coms">
+	<select id="getReplyList" resultType="reply">
 		
 		select * from comments where rv_no = #{rv_no} order by cm_no desc
 	
 	</select>
 	
-	<select id="getComs" resultType="coms">
+	<select id="getReply" resultType="reply">
 	<![CDATA[
 		select * from comments where cm_no = #{cm_no}
 	]]>
 	</select>
 	
-	<update id="updateComs">
+	<update id="updateReply">
 	<![CDATA[
 		update comments set cm_content = #{cm_content} where cm_no =#{cm_no}
 	]]>
 	</update>
 	
-	<delete id="deleteComs">
+	<delete id="deleteReply">
 	<![CDATA[
 		delete from comments where cm_no = #{cm_no}
 	]]>
