@@ -7,32 +7,48 @@
 	
 	<insert id="insertReply" parameterType="reply">
 	<![CDATA[
-		insert into comments(cm_no,rv_no,bm_no,cm_content) values((select nvl(max(cm_no),0)+1 from comments), #{rv_no}, #{bm_no}, #{cm_content})
+		insert into reply(r_no,cm_bdno,r_content,r_writer) values((select nvl(max(r_no),0)+1 from reply), #{cm_bdno}, #{r_content}, #{r_writer})
 	]]>
 	</insert>
 	
 	<select id="getReplyList" resultType="reply">
 		
-		select * from comments where rv_no = #{rv_no} order by cm_no desc
+		<![CDATA[
+			select r_no
+				 , cm_bdno
+				 , r_content
+				 , r_del
+				 , TO_CHAR(r_date, 'YYYY-MM-DD HH24:MI:SS') as r_date
+				 , r_writer
+			  from reply 
+			 where cm_bdno = #{cm_bdno}
+			 order by r_no desc
+		]]>
 	
 	</select>
 	
-	<select id="getReply" resultType="reply">
+	<!-- <select id="getReply" resultType="reply">
 	<![CDATA[
-		select * from comments where cm_no = #{cm_no}
+		select * from reply where r_no = #{r_no}
 	]]>
-	</select>
+	</select> -->
 	
-	<update id="updateReply">
+	<!-- <update id="updateReply">
 	<![CDATA[
-		update comments set cm_content = #{cm_content} where cm_no =#{cm_no}
+		update reply set r_content = #{r_content} where r_no =#{r_no}
+	]]>
+	</update> -->
+	
+	<update id="deleteReply">
+	<![CDATA[
+		update reply set r_del = '1' where r_no =#{r_no}
 	]]>
 	</update>
 	
-	<delete id="deleteReply">
+	<!-- <delete id="deleteReply">
 	<![CDATA[
-		delete from comments where cm_no = #{cm_no}
+		delete from reply where r_no = #{r_no}
 	]]>
-	</delete>
+	</delete> -->
 	
 </mapper>
