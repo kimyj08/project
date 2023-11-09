@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class CommunityVO {
 
-	private String cm_bdno;
-	private String um_no;
+	private int cm_bdno;
+	private String cm_writer;
 	private String cm_title;
 	private String cm_desc;
 	private int cm_cnt;
@@ -16,17 +16,17 @@ public class CommunityVO {
 	private String searchCondition;
 	private String searchKeyword;
 	
-	public String getCm_bdno() {
+	public int getCm_bdno() {
 		return cm_bdno;
 	}
-	public void setCm_bdno(String cm_bdno) {
+	public void setCm_bdno(int cm_bdno) {
 		this.cm_bdno = cm_bdno;
 	}
-	public String getUm_no() {
-		return um_no;
+	public String getCm_writer() {
+		return cm_writer;
 	}
-	public void setUm_no(String um_no) {
-		this.um_no = um_no;
+	public void setCm_writer(String cm_writer) {
+		this.cm_writer = cm_writer;
 	}
 	public String getCm_title() {
 		return cm_title;
@@ -79,9 +79,9 @@ public class CommunityVO {
 	
 	@Override
 	public String toString() {
-		return "CommunityVO [cm_bdno=" + cm_bdno + ", um_no=" + um_no + ", cm_title=" + cm_title + ", cm_desc="
-				+ cm_desc + ", cm_cnt=" + cm_cnt + ", cm_del=" + cm_del + ", cm_regdate=" + cm_regdate
-				+ ", cm_update=" + cm_update + "]";
+		return "CommunityVO [cm_bdno=" + cm_bdno + ", cm_writer=" + cm_writer + ", cm_title=" + cm_title + ", cm_desc="
+				+ cm_desc + ", cm_cnt=" + cm_cnt + ", cm_del=" + cm_del + ", cm_regdate=" + cm_regdate + ", cm_update="
+				+ cm_update + ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + "]";
 	}
 	
 }

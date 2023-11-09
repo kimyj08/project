@@ -3,52 +3,45 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="Reply">
-	
-	<insert id="insertReply" parameterType="reply">
+<mapper namespace="Re">
+
+	<insert id="insertRe" parameterType="re">
 	<![CDATA[
-		insert into reply(r_no,cm_bdno,r_content,r_writer) values((select nvl(max(r_no),0)+1 from reply), #{cm_bdno}, #{r_content}, #{r_writer})
+		insert into reply(r_no,cm_bdno,um_no,r_content,r_del) values((select nvl(max(r_no),0)+1) from reply), #{cm_bdno}, #{um_no}, #{r_content}, #{r_del}
 	]]>
 	</insert>
 	
-	<select id="getReplyList" resultType="reply">
+	<select id="getReList" resultType="re">
 		
-		<![CDATA[
-			select r_no
-				 , cm_bdno
-				 , r_content
-				 , r_del
-				 , TO_CHAR(r_date, 'YYYY-MM-DD HH24:MI:SS') as r_date
-				 , r_writer
-			  from reply 
-			 where cm_bdno = #{cm_bdno}
-			 order by r_no desc
-		]]>
+		select * 
+		from reply 
+		where 1 = 1
+		<if test="searchCondition == 'USER'">
+			and um_no like '%'||#{searchKeyword}||'%' 
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			and r_content like '%'||#{searchKeyword}||'%'
+		</if>
+		order by r_no desc
 	
 	</select>
 	
-	<!-- <select id="getReply" resultType="reply">
+	<select id="getRe" resultType="re">
 	<![CDATA[
 		select * from reply where r_no = #{r_no}
 	]]>
-	</select> -->
+	</select>
 	
-	<!-- <update id="updateReply">
+	<update id="updateRe">
 	<![CDATA[
-		update reply set r_content = #{r_content} where r_no =#{r_no}
-	]]>
-	</update> -->
-	
-	<update id="deleteReply">
-	<![CDATA[
-		update reply set r_del = '1' where r_no =#{r_no}
+		update reply set r_content = #{r_content} where r_no = #{r_no}
 	]]>
 	</update>
 	
-	<!-- <delete id="deleteReply">
+	<delete id="deleteRe">
 	<![CDATA[
 		delete from reply where r_no = #{r_no}
 	]]>
-	</delete> -->
-	
+	</delete>
+
 </mapper>

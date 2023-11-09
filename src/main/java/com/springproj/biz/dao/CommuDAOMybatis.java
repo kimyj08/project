@@ -22,7 +22,7 @@ public class CommuDAOMybatis {
 	}
 	
 	// 목록보기(select문)
-	public CommunityVO getCommu(String cm_bdno) {
+	public CommunityVO getCommu(int cm_bdno) {
 		mybatis.update("Commu.updateCnt", cm_bdno);
 		return mybatis.selectOne("Commu.getCommu", cm_bdno);
 	}
@@ -46,9 +46,14 @@ public class CommuDAOMybatis {
 		mybatis.update("Commu.updateCommu", vo);
 	}
 	
+	// 조회수 증가(update문)
+	public void updateCnt(int cm_bdno) {
+		mybatis.update("Commu.updateCnt", cm_bdno);
+	}
+	
 	// 글 삭제(delete문)
-	public void deleteCommu(String cm_bdno) {
-		mybatis.delete("Commu.deleteCommu", cm_bdno);
+	public void deleteCommu(int cm_bdno) {
+		mybatis.update("Commu.deleteCommu", cm_bdno);
 	}
 	
 }

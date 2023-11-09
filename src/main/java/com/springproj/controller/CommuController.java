@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.springproj.biz.domain.CommunityVO;
+import com.springproj.biz.domain.ReplyVO;
 import com.springproj.biz.service.CommuService;
+import com.springproj.biz.service.ReplyService;
 
 @Controller
 @SessionAttributes("commu")
@@ -25,6 +27,8 @@ public class CommuController {
 	
 	@Autowired
 	CommuService commuService;
+	@Autowired
+	ReplyService replyService;
 
 	//@RequestMapping(value = "/insertBoard.do", method = RequestMethod.GET) // value = : 이거는 하나만 세팅 해줄 때는 안써도 가능.
 	@GetMapping("/insertCommu.zo") // 4점대 버전 이후부터 사용 가능한 기능.
@@ -56,8 +60,10 @@ public class CommuController {
 	}
 	
 	@RequestMapping(value = "/getCommu.zo")
-	public String getCommu(CommunityVO commu, Model model) {
+	public String getCommu(CommunityVO commu, Model model, ReplyVO re) {
 		//System.out.println("GetBoardController 처리.");
+		
+		commuService.updateCntService(commu.getCm_bdno());
 		
 		CommunityVO vo = commuService.getService(commu.getCm_bdno());
 		

@@ -21,7 +21,7 @@ public class CommuServiceImpl implements CommuService {
 	}
 
 	@Override
-	public CommunityVO getService(String cm_bdno) {
+	public CommunityVO getService(int cm_bdno) {
 		CommunityVO commu = dao.getCommu(cm_bdno);
 		return commu;
 	}
@@ -35,9 +35,14 @@ public class CommuServiceImpl implements CommuService {
 	public void updateService(CommunityVO vo) {
 		dao.updateCommu(vo);
 	}
+	
+	@Override
+	public void updateCntService(int cm_bdno) {
+		dao.updateCnt(cm_bdno);
+	}
 
 	@Override
-	public void deleteService(String cm_bdno) {
+	public void deleteService(int cm_bdno) {
 		dao.deleteCommu(cm_bdno);
 	}
 

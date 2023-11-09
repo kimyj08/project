@@ -1,101 +1,187 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <title>커뮤니티 글 상세</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<%@ include file="/resources/css/basic.css" %>
+<style>
+
+
+.img-back{
+	width : 40px;
+	height: 40px;
+	float: left;
+	margin-right: 10px;
+}
+
+.Commudetailtitle{
+	font-family: 'KoPubWorldDotum';
+	font-size : 23px;
+	border: 0px;
+	font-weight: bold;
+	padding-top : 5px;
+	padding-bottom : 10px;
+}
+
+/* a{
+	font-family: 'KoPubWorldDotum';
+	font-size: 13px;
+	padding-right: 30px;
+} */
+
+.Commudetailproperty{
+	padding-bottom: 10px;
+}
+
+textarea{
+	width: 100%;
+	border: 0px;
+	font-family: 'KoPubWorldDotum';
+}
+
+.updatebu{
+	padding: 12px 20px; 
+	font-size: 17px;
+	border : 1px solid #749641;
+	border-radius: 5px;
+	background-color: #88b04b;
+	color : #FFFFFF;
+	font-family: 'MICEGothic Bold';
+	margin-left: 50px;
+}
+
+.butarea{
+	float: right;
+}
+
+.replyinsertbox{
+	text-align: center;
+}
+
+.replybox{
+	margin-left:20px;
+	margin-right:10px;
+	width: 70%;
+	height: 70px;
+}
+
+.replytable td{
+ 	padding-top:10px;
+ 	padding-bottom: 10px;
+ 	padding-left: 50px;
+ 	
+}
+
+.replytable .replydate{
+	text-align: right;
+	padding-right: 80px;
+}
+
+
+</style>
+
+
 </head>
 <body>
-	<center>
-		<h1>커뮤니티 글 상세</h1>
-		<a href="logout.do">Log-out</a>
-		<hr>
-		<form action="updateCommu.zo" method="post">
-			<input name="cm_bdno" type="hidden" value="${commu.cm_bdno}" />
-			<table border="1" cellpadding="0" cellspacing="0">
-				<tr>
-					<td bgcolor="orange" width="70">제목</td>
-					<td align="left">
-						<input name="cm_title" type="text" value="${commu.cm_title}" />
-					</td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">작성자번호</td>
-					<td align="left">${commu.um_no}</td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">내용</td>
-					<td align="left">
-						<textarea name="cm_desc" cols="40" rows="10">${commu.cm_desc}</textarea>
-					</td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">등록일</td>
-					<td align="left">${commu.cm_regdate}</td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">조회수</td>
-					<td align="left">${commu.cm_cnt}</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="글 수정" />
-					</td>
-				</tr>
-			</table>
-		</form>
-		<hr>
-		<form action="insertAr.zo" method="post">
-			<input name="a_no" type="hidden" value="${ask.a_no}" />
-			<table>
-				<tr>
-					<th>댓글달기</th>
-				</tr>
-				<tr>
-					<td bgcolor="orange">작성자번호</td>
-					<td><input type="text" name="um_no" value="${ask.um_no}" readonly="readonly"/></td>
-					<td bgcolor="orange">브랜드번호</td>
-					<td><input type="text" name="bm_no" value="${ask.bm_no}" readonly="readonly"/></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="ar_content" size="50"/></td>
-					<td>상담상태<input type="text" name="ar_status" size="10"/></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value=" 댓글 등록 " />
-						<input type="reset" value="취소" onclick="reset()">
-					</td>
-				</tr>
-			</table>
-		</form>
-		<hr>
-		<table border="1" cellpadding="0" cellspacing="0" width="800">
-			<tr>
-				<th bgcolor="orange" width="100">번호</th>
-				<th bgcolor="orange" width="100">문의번호</th>
-				<th bgcolor="orange" width="150">회원번호</th>
-				<th bgcolor="orange" width="150">브랜드번호</th>
-				<th bgcolor="orange" width="150">상담일시</th>
-				<th bgcolor="orange" width="100">상담상태</th>
-			</tr>
-			<c:forEach items="${arList}" var="ar"> <!-- items : 데이터를 레코드 단위로 반환, var : 변수 선언할 수 있는 속성 -->
-				<tr>
-					<td align="center">${ar.ar_no}</td>
-					<td align="center">${ar.a_no}</td>
-					<td><a href="getAr.zo?ar_no=${ar.ar_no}">${ar.um_no}</a></td>
-					<td><a href="getAr.zo?ar_no=${ar.ar_no}">${ar.bm_no}</a></td>
-					<td align="center">${ar.ar_date}</td>
-					<td align="center">${ar.ar_status}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<br>
-		<hr>
-		<a href="insertCommu.zo">커뮤니티글등록</a>&nbsp;&nbsp;&nbsp; 
-		<a href="deleteCommu.zo?a_no=${ ask.a_no }">커뮤니티글삭제</a>&nbsp;&nbsp;&nbsp;
-		<a href="getCommuList.zo">커뮤니티글목록</a>
-	</center>
+
+<header>
+<jsp:include page="/header.jsp"></jsp:include></header>
+ <main>  
+   <!-- 본문 -->
+   
+<div class ="outline">
+
+<br>
+<br>
+   
+    <div class="c_page">
+    	<a href="getCommuList.zo">
+      	<img class="img-back" src="resources/img/back.png"/>
+  		</a>
+		<div class="title">반려 유치원</div>
+	</div>
+	<hr>
+	<br>
+	
+      <form action="updateCommu.zo" method="post">
+         <input name="cm_bdno" type="hidden" value="${commu.cm_bdno}" />
+         
+         <input name="cm_title" type="text" value="${commu.cm_title}" class = "Commudetailtitle"/>
+         
+         <div class = "Commudetailproperty">
+         <a>${commu.cm_writer}</a> &nbsp;&nbsp;&nbsp;&nbsp;<a>｜</a>
+         <a>${commu.cm_regdate}</a> &nbsp;&nbsp;&nbsp;&nbsp; <a>｜</a>
+         <a>조회수 : ${commu.cm_cnt}</a>
+         </div>
+         
+         <hr>
+         
+         <br>
+         
+         <textarea name="cm_desc">${commu.cm_desc}</textarea>
+         
+     	<hr>
+          <br>
+           
+         
+         <!-- 수정버튼 넣고 페이지 이동 > 수정 이거 근데 수정페이지 같은데... -->
+         <div class = "butarea">
+         <input type="submit" value="글  수정" class="updatebu"/>
+         <button type="button" class="updatebu" onclick="location.href='getCommuList.zo'">목록으로</button>
+      	</div>
+      
+      </form>   
+         
+         <br>
+           <br>
+            <br>
+          
+       <!-- 댓글구역 -->  
+         <h1>댓글</h1>  
+      
+      <hr>
+      <div class = "replyinsertbox">
+      <form action="insertRp.rp" method="post">
+      	 <input name="cm_bdno" type="hidden" value="${commu.cm_bdno}" />
+         <input type="text" name="r_content" class="replybox"/>
+         <input name="r_writer" type="hidden" value="<%=session.getAttribute("userName")%>" readonly/>
+         <input type="submit" value=" 댓글 등록 " class="updatebu" />
+     </form>
+      </div>   
+      <hr>
+      
+	<table class="replytable">
+      <c:forEach items="${rpList}" var="rp">
+      <tr>
+      		<td>${rp.r_writer}</td>
+      		<td>${rp.r_content}</td>
+      		<td class="replydate">${rp.r_date}</td>
+     </tr>
+      </c:forEach>
+   </table>
+      
+   
+   
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+   
+   </div>   
+   
+</main>   
+<footer>
+<jsp:include page="/footer.jsp"></jsp:include></footer>
+   
 </body>
 </html>
