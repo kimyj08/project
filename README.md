@@ -18,7 +18,7 @@ personal project
 - [ ] 테이블 생성
 
 [ 기능 ]
-- [ ] 문의게시판 CRUD 구현
+- [x] 문의게시판 CRUD 구현
 - [ ] 커뮤니티 CRUD 구현
 
 ---
