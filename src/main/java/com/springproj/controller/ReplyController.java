@@ -26,61 +26,33 @@ import com.springproj.biz.service.ReplyService;
 public class ReplyController {
 	
 	@Autowired
-	CommuService commuService;
-	@Autowired
 	ReplyService replyService;
 
 	//@RequestMapping(value = "/insertBoard.do", method = RequestMethod.GET) // value = : 이거는 하나만 세팅 해줄 때는 안써도 가능.
-	@GetMapping("/insertCommu.zo") // 4점대 버전 이후부터 사용 가능한 기능.
-	public String insertCommu() {
+	@GetMapping("/insertReply.zo") // 4점대 버전 이후부터 사용 가능한 기능.
+	public String insertReply() {
 		//System.out.println("글 등록 화면 처리");
 		
-		return "insertCommu";
+		return "insertReply";
 	}
 	
 	//@RequestMapping(value = "/insertBoard.do", method = RequestMethod.POST)
-	@PostMapping("/insertCommu.zo")
-	public String insertCommu(CommunityVO commu, HttpSession session) throws IOException {
-		//System.out.println("글 등록 처리");
+	@PostMapping("/insertReply.zo")
+	public String insertReply(ReplyVO reply, CommunityVO commu) {
 		
-		// 파일 업로드 처리
-//		String fileSaveFolder = session.getServletContext().getRealPath("/commuUpload/");
-//		System.out.println("=>" + fileSaveFolder);
-//		
-//		MultipartFile uploadFile =  commu.getUploadFile();
-//		
-//		if(!uploadFile.isEmpty()) {
-//			String fileName = uploadFile.getOriginalFilename();
-//			uploadFile.transferTo(new File(fileSaveFolder+fileName));
-//		}
+		replyService.insertService(reply);
 		
-		commuService.insertService(commu);
-		
-		return "redirect:getCommuList.zo";
+		return "redirect:getCommu.zo?cm_bdno="+commu.getCm_bdno();
 	}
 	
-	@RequestMapping(value = "/getCommu.zo")
-	public String getCommu(CommunityVO commu, Model model, ReplyVO re) {
-		//System.out.println("GetBoardController 처리.");
+	@RequestMapping(value = "/getReply.zo")
+	public String getReply(ReplyVO vo, Model model) {
 		
-		commuService.updateCntService(commu.getCm_bdno());
+		List<ReplyVO> list = replyService.getServiceList(vo.getR_no());
 		
-		CommunityVO vo = commuService.getService(commu.getCm_bdno());
+		model.addAttribute("replyList", list); // command 객체로 이용 가능하다.
 		
-		model.addAttribute("commu", vo); // command 객체로 이용 가능하다.
-		
-		return "getCommu";
-	}
-	
-	// 검색 조건 목록 설정
-	@ModelAttribute("conditionMap") // key 자리
-	public Map<String, String> searchConditionMap() {
-		Map<String, String> conditionMap = new HashMap<String, String>();
-		
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
-		
-		return conditionMap; // value 자리
+		return "redirect:getCommu.zo?cm_bdno="+vo.getCm_bdno();
 	}
 	
 	@RequestMapping(value = "/getCommuList.zo")
@@ -104,24 +76,14 @@ public class ReplyController {
 		
 		return "getCommuList";
 	}
-	
-	@RequestMapping(value = "/updateCommu.zo")
-	public String updateBoardProc(@ModelAttribute("commu") CommunityVO vo) {
-		//System.out.println("글 수정 처리.");
-		System.out.println(vo);
-		
-		commuService.updateService(vo);
-		
-		return "redirect:getCommuList.zo";
-	}
 
-	@RequestMapping(value = "/deleteCommu.zo")
-	public String deleteCommu(CommunityVO commu) {
+	@RequestMapping(value = "/deleteReply.zo")
+	public String deleteReply(ReplyVO reply) {
 		//System.out.println("글 삭제 처리.");
 				
-		commuService.deleteService(commu.getCm_bdno());
+		replyService.deleteService(reply.getR_no());
 		
-		return "redirect:getCommuList.zo";
+		return "redirect:getReplyList.zo";
 	}
 	
 }

@@ -14,12 +14,17 @@ public class ReplyDAOMybatis {
 	SqlSessionTemplate mybatis;
 	
 	// 글 등록(insert문)
-	public void insertReply(ReplyVO vo) {
-		mybatis.insert("Reply.insertReply", vo); // 이때의 insert는 MyBatis의 mapping과 연결이 되어있는 것.
+	public void insertRe(ReplyVO vo) {
+		mybatis.insert("Re.insertRe", vo); // 이때의 insert는 MyBatis의 mapping과 연결이 되어있는 것.
    }
 
 	// 목록보기(select문)
-	public List<ReplyVO> getReplyList(ReplyVO vo) {
+	public ReplyVO getRe(int r_no) {
+		return mybatis.selectOne("Re.getRe", r_no);
+	}
+	
+	
+	public List<ReplyVO> getReList(int cm_bdno) {
 		
 //		if(vo.getSearchCondition().equals("TITLE")) {
 //			return mybatis.selectList("Ask.getAskList_T", vo);
@@ -29,7 +34,7 @@ public class ReplyDAOMybatis {
 //			return mybatis.selectList("Ask.getAskList_T", vo);
 //		}
 				
-		return mybatis.selectList("Reply.getReplyList", vo);
+		return mybatis.selectList("Re.getReList", cm_bdno);
 		
 	}
 
