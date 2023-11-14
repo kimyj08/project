@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.springproj.biz.domain.ReplyVO;
 
-public interface ReplyService {
+public interface ReService {
 
 	public void insertService(ReplyVO vo);
-	public List<ReplyVO> getServiceList(ReplyVO vo);
+	public ReplyVO getService(int r_no);
+	public List<ReplyVO> getServiceList(int cm_bdno);
 	public void deleteService(int r_no);
 	
 }

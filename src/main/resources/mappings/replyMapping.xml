@@ -32,11 +32,11 @@
 	]]>
 	</select>
 	
-	<update id="updateRe">
+	<!-- <update id="updateRe">
 	<![CDATA[
 		update reply set r_content = #{r_content} where r_no = #{r_no}
 	]]>
-	</update>
+	</update> -->
 	
 	<delete id="deleteRe">
 	<![CDATA[

@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.springproj.biz.domain.CommunityVO;
 import com.springproj.biz.domain.ReplyVO;
 import com.springproj.biz.service.CommuService;
-import com.springproj.biz.service.ReplyService;
+import com.springproj.biz.service.ReService;
 
 @Controller
 @SessionAttributes("reply")
 public class ReplyController {
 	
 	@Autowired
-	ReplyService replyService;
+	ReService replyService;
 
 	//@RequestMapping(value = "/insertBoard.do", method = RequestMethod.GET) // value = : 이거는 하나만 세팅 해줄 때는 안써도 가능.
 	@GetMapping("/insertReply.zo") // 4점대 버전 이후부터 사용 가능한 기능.

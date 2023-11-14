@@ -23,7 +23,6 @@ public class ReplyDAOMybatis {
 		return mybatis.selectOne("Re.getRe", r_no);
 	}
 	
-	
 	public List<ReplyVO> getReList(int cm_bdno) {
 		
 //		if(vo.getSearchCondition().equals("TITLE")) {
@@ -39,8 +38,8 @@ public class ReplyDAOMybatis {
 	}
 
 	// 글 삭제(delete문)
-	public void deleteReply(int r_no) {
-		mybatis.update("Reply.deleteReply", r_no);
+	public void deleteRe(int r_no) {
+		mybatis.update("Re.deleteRe", r_no);
 	}
 
 }

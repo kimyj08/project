@@ -7,27 +7,34 @@ import org.springframework.stereotype.Service;
 
 import com.springproj.biz.dao.ReplyDAOMybatis;
 import com.springproj.biz.domain.ReplyVO;
-import com.springproj.biz.service.ReplyService;
+import com.springproj.biz.service.ReService;
 
-@Service("replyService")
-public class ReplyServiceImpl implements ReplyService {
+@Service("reService")
+public class ReplyServiceImpl implements ReService {
 
 	@Autowired
 	private ReplyDAOMybatis dao;
 	
 	@Override
 	public void insertService(ReplyVO vo) {
-		dao.insertReply(vo);
+		dao.insertRe(vo);
+	}
+	
+	@Override
+	public ReplyVO getService(int r_no) {
+		ReplyVO re = dao.getRe(r_no);
+		return re;
 	}
 
 	@Override
-	public List<ReplyVO> getServiceList(ReplyVO vo) {
-		return dao.getReplyList(vo);
+	public List<ReplyVO> getServiceList(int cm_bdno) {
+		return dao.getReList(cm_bdno);
 	}
 
 	@Override
 	public void deleteService(int r_no) {
-		dao.deleteReply(r_no);
+		dao.deleteRe(r_no);
 	}
+
 
 }
