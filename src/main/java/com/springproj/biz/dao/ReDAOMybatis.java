@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.springproj.biz.domain.ReplyVO;
 
 @Repository
-public class ReplyDAOMybatis {
+public class ReDAOMybatis {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
@@ -19,10 +19,6 @@ public class ReplyDAOMybatis {
    }
 
 	// 목록보기(select문)
-	public ReplyVO getRe(int r_no) {
-		return mybatis.selectOne("Re.getRe", r_no);
-	}
-	
 	public List<ReplyVO> getReList(int cm_bdno) {
 		
 //		if(vo.getSearchCondition().equals("TITLE")) {

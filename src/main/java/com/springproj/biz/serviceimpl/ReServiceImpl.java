@@ -5,25 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springproj.biz.dao.ReplyDAOMybatis;
+import com.springproj.biz.dao.ReDAOMybatis;
 import com.springproj.biz.domain.ReplyVO;
 import com.springproj.biz.service.ReService;
 
 @Service("reService")
-public class ReplyServiceImpl implements ReService {
+public class ReServiceImpl implements ReService {
 
 	@Autowired
-	private ReplyDAOMybatis dao;
+	private ReDAOMybatis dao;
 	
 	@Override
 	public void insertService(ReplyVO vo) {
 		dao.insertRe(vo);
-	}
-	
-	@Override
-	public ReplyVO getService(int r_no) {
-		ReplyVO re = dao.getRe(r_no);
-		return re;
 	}
 
 	@Override

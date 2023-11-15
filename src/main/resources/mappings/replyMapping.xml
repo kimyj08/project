@@ -26,11 +26,11 @@
 	
 	</select>
 	
-	<select id="getRe" resultType="re">
+	<!-- <select id="getRe" resultType="re">
 	<![CDATA[
 		select * from reply where r_no = #{r_no}
 	]]>
-	</select>
+	</select> -->
 	
 	<!-- <update id="updateRe">
 	<![CDATA[
