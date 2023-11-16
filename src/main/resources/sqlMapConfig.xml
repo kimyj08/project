@@ -12,7 +12,7 @@
 		<typeAlias alias="rv" type="com.springproj.biz.domain.ReviewVO"/>
 		<typeAlias alias="ar" type="com.springproj.biz.domain.AskRvVO"/>
 		<typeAlias alias="coms" type="com.springproj.biz.domain.CommentsVO"/>
-		<typeAlias alias="reply" type="com.springproj.biz.domain.ReplyVO"/>
+		<typeAlias alias="re" type="com.springproj.biz.domain.ReplyVO"/>
 		<typeAlias alias="commu" type="com.springproj.biz.domain.CommunityVO"/>
 	</typeAliases>
 	

@@ -104,7 +104,7 @@ textarea{
    
     <div class="c_page">
     	<a href="getCommuList.zo">
-      	<img class="img-back" src="resources/img/back.png"/>
+      	<!-- <img class="img-back" src="resources/img/back.png"/> -->
   		</a>
 		<div class="title">반려 유치원</div>
 	</div>
