@@ -149,7 +149,7 @@ textarea{
       
       <hr>
       <div class = "replyinsertbox">
-      <form action="insertRp.rp" method="post">
+      <form action="insertRe.zo" method="post">
       	 <input name="cm_bdno" type="hidden" value="${commu.cm_bdno}" />
          <input type="text" name="r_content" class="replybox"/>
          <input name="r_writer" type="hidden" value="<%=session.getAttribute("userName")%>" readonly/>
@@ -159,11 +159,11 @@ textarea{
       <hr>
       
 	<table class="replytable">
-      <c:forEach items="${rpList}" var="rp">
+      <c:forEach items="${reList}" var="re">
       <tr>
-      		<td>${rp.r_writer}</td>
-      		<td>${rp.r_content}</td>
-      		<td class="replydate">${rp.r_date}</td>
+      		<td>${re.r_writer}</td>
+      		<td>${re.r_content}</td>
+      		<td class="replydate">${re.r_date}</td>
      </tr>
       </c:forEach>
    </table>
