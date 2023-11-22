@@ -23,7 +23,6 @@ public class CommuDAOMybatis {
 	
 	// 목록보기(select문)
 	public CommunityVO getCommu(int cm_bdno) {
-		mybatis.update("Commu.updateCnt", cm_bdno);
 		return mybatis.selectOne("Commu.getCommu", cm_bdno);
 	}
 	
