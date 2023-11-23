@@ -49,10 +49,10 @@ button{
 </head>
 <body>
 
-<%
+<%-- <%
 	Object um_nic = session.getAttribute("um_ars");
 	String commuwriter = (String)um_nic;
-%>
+%> --%>
 
 <header>
 <jsp:include page="/header.jsp"></jsp:include>
@@ -76,7 +76,8 @@ button{
 			<input type="text" name="cm_title" class="commuarea"/>
 			<div class="container" style="height:10px;"></div>
 		<h1 class = "commutitle">작성자</h1>
-			<input type="text" name="cm_writer" class="commuarea" value="<%=session.getAttribute("userName")%>" readonly/>
+			<%-- <input type="text" name="cm_writer" class="commuarea" value="<%=session.getAttribute("userName")%>" readonly/> --%>
+			<input type="text" name="cm_writer" class="commuarea" value="${ask.name_1}" readonly/>
 			<div class="container" style="height:10px;"></div>
 		<h1 class = "commutitle">내용</h1>
 			<textarea name="cm_desc" cols="40" rows="10"></textarea>
